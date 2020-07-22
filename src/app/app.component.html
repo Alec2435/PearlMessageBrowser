@@ -1,0 +1,39 @@
+<h3 class="headerprofile">
+  Pearl Message Browser
+</h3>
+
+
+
+<div>
+
+  <input class="search-div" matInput [(ngModel)]="searchKey" (keyup)="applyFilter($event)" placeholder="Search" autocomplete="off">
+
+
+  <mat-table [dataSource]="dataSource" matSort>
+
+    <mat-header-row *matHeaderRowDef="tableColumns">
+
+    </mat-header-row>
+    <mat-row *matRowDef="let row; columns: tableColumns"></mat-row>
+
+    <ng-container class="mat-column-name" matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Name</mat-header-cell>
+      <mat-cell *matCellDef="let policy">{{policy.name}}</mat-cell>
+    </ng-container>
+
+
+    <ng-container matColumnDef="message">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Message</mat-header-cell>
+      <mat-cell *matCellDef="let policy">{{policy.message}}...</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="lastMessageDate">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Date</mat-header-cell>
+      <mat-cell *matCellDef="let policy">{{policy.lastMessageDate | date: 'fullDate' }}</mat-cell>
+    </ng-container>
+
+  </mat-table>
+  <mat-paginator [pageSizeOptions]="[5,10,15,20]" [pageSize]="5"></mat-paginator>
+
+
+</div>
